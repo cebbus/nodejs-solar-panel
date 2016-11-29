@@ -1,0 +1,48 @@
+doctype html
+html
+    head
+        title= 'Güneş Paneli Takip Sistemi'
+        link(rel='stylesheet', href='/stylesheets/style.css')
+        link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+        link(rel='stylesheet' href='/jquery-ui-1.11.4/jquery-ui.min.css')
+
+        script(src='/socket.io/socket.io.js')
+        script(src='/jquery-ui-1.11.4/external/jquery/jquery.js')
+        script(src='/jquery-ui-1.11.4/jquery-ui.min.js')
+        script(src='/bootstrap/js/bootstrap.min.js')
+        script(src='/highcharts/js/highcharts.js')
+        script(src='/highcharts/js/highcharts-more.js')
+    body
+        nav(class='navbar navbar-inverse navbar-fixed-top')
+            div(class='container')
+                div(class='navbar-header')
+                    a(class='navbar-brand' href='/').
+                        Güneş Paneli Takip Sistemi
+
+                div(id='navbar' class='navbar-collapse collapse')
+                    ul(class='nav navbar-nav navbar-right')
+                        li(id='viewPanel' class='active')
+                            a(href='/').
+                                Panel Takibi
+                        li(id='managePanel')
+                            a(href='manage').
+                                Panel Yönetimi
+
+        block content
+
+        footer(class='footer')
+            div(class='container')
+                p(class='text-muted').
+                    &copy; Kocaeli Üniversitesi Bilgisayar Mühendisliği 2016
+
+        script.
+            var url = window.location.href;
+
+            if(url.indexOf('manage') == -1) {
+                $('#viewPanel').addClass("active");
+                $('#managePanel').removeClass("active");
+            } else {
+                $('#viewPanel').removeClass("active");
+                $('#managePanel').addClass("active");
+            }
+
